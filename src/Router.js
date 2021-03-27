@@ -1,5 +1,5 @@
 import React from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Footer from "./components/footer";
 import Navbar from "./components/navbar";
 
@@ -19,28 +19,24 @@ function Router() {
   return (
     <BrowserRouter>
       <Switch>
-        {user ? (
-          <>
-            <Navbar />
-            <Footer />
-            {user.role ? (
-              <>
-                <Route exact path="/setting/" component={Settings} />
-                <Route exact path="/events/" component={Events} />
-                <Route exact path="/events/:id" component={Event} />
-                <Route exact path="/new-event" component={Create} />
-                <Route exact path="/dashboard" component={Dashboard} />
-                <Route exact path="/" component={Dashboard} />
-              </>
-            ) : (
-              <>
-                <Route exact path="/events/" component={Events} />
-              </>
-            )}
-          </>
-        ) : (
-          <Route exact path="/" component={MobileLogin} />
-        )}
+        <>
+          {user.role === "admin" ? (
+            <>
+              <Navbar />
+              <Footer />
+              <Route path="/setting/" component={Settings} />
+              <Route path="/events/" component={Events} />
+              <Route path="/events/:id" component={Event} />
+              <Route path="/new-event" component={Create} />
+              <Route path="/" component={Dashboard} />
+            </>
+          ) : (
+            <>
+              <Redirect to="/login" />
+              <Route exact path="/login" component={MobileLogin} />
+            </>
+          )}
+        </>
       </Switch>
     </BrowserRouter>
   );

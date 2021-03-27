@@ -16,7 +16,10 @@ function Index() {
 
   const onFinish = async (values: any) => {
     try {
-      await axios.post("http://localhost:5000/auth/login", values);
+      await axios.post(
+        "https://gold-test-app.herokuapp.com/auth/login",
+        values
+      );
       openNotificationWithIcon("success");
       history.push("/dashboard");
     } catch (error) {

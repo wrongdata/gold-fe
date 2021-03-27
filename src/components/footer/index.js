@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 const cn = {
   footer:
@@ -10,25 +11,25 @@ function Footer() {
   return (
     <footer className={cn.footer}>
       <div>
-        <a href="/dashboard">
+        <Link to="/dashboard">
           <img src="/icon-dashboard.svg" alt="icon" />
-        </a>
+        </Link>
       </div>
       <div>
-        <a href="/new-event">
+        <Link to="/new-event">
           <img src="/icon-add.svg" alt="icon" />
-        </a>
+        </Link>
       </div>
       <div>
-        <a href="/events">
+        <Link to="/events">
           <img src="/icon-search.svg" alt="icon" />
-        </a>
+        </Link>
       </div>
 
       <div>
-        <a href="/setting">
+        <Link to="/setting">
           <img src="/icon-setting.svg" alt="icon" />
-        </a>
+        </Link>
       </div>
     </footer>
   );
