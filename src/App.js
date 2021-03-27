@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import axios from "axios";
+
+import "./app.css";
+
+import Router from "./Router";
+
+import { useDispatch } from "react-redux";
+import { getEvents } from "./store/actions/events";
+import { userData } from "./store/actions/auth";
+
+axios.defaults.withCredentials = true;
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  const dispatch = useDispatch();
+  useEffect(() => {
+    dispatch(userData());
+    dispatch(getEvents());
+  }, [dispatch]);
+
+  return <Router />;
 }
 
 export default App;
